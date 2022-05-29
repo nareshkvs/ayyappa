@@ -14,5 +14,8 @@
         <div class="max-w-xl mx-auto mt-10">
             <livewire:likes-component :blog='$blog'>
         </div>
+        <div class="max-w-xl mx-auto mt-10">
+            <livewire:comments :blog='$blog'>
+        </div>
     </div>
 </x-app-layout>
