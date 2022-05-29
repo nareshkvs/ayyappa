@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\BlogLike;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
 use Spatie\Permission\Traits\HasRoles;
@@ -9,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -71,4 +73,10 @@ class User extends Authenticatable
     /* public function posts(){
         return $this->hasMany('Post');
     } */
+
+    public function likes(): HasMany
+    {
+        return $this->hasMany(BlogLike::class);
+    }
+
 }

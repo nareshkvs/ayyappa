@@ -48,7 +48,8 @@ class BlogController extends Controller
      */
     public function read($id, $slug)
     {
-        dd($id, $slug);
+        $blog = Blog::find($id);
+        return view('blogs.view', ['blog'=>$blog]);
     }
 
     /**
