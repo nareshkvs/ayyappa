@@ -33,7 +33,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 });
 
 Route::get('blog/{id}/{slug}', [BlogController::class, 'read']);
-Route::resource('blog', BlogController::class)->except('show');
-//Route::get('blogs', Blog::class);
+Route::resource('blogs', BlogController::class)->except('show');
 //Route::get('blog/{slug}', Blog::class);
-
