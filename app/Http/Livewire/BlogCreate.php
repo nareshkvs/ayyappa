@@ -37,6 +37,7 @@ class BlogCreate extends Component
         $this->blog->save();
         $this->resetFields();
         $this->saveSuccess = true;
+        redirect('/blogs');
     }
 
     public function resetFields()

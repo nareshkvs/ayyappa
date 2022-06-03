@@ -30,10 +30,12 @@
                     <input id="title" wire:model="blog.title" name="title" class="block w-full px-3 py-2 text-base leading-normal transition duration-150 ease-in-out bg-white border border-gray-400 rounded-md appearance-none sm:text-sm sm:leading-5">
                 </div>
             </div>
-            <div class="pt-5 sm:col-span-6">
+            <div class="pt-5 sm:col-span-6" wire:ignore>
                 <label for="body" class="block text-sm font-medium text-gray-700">Body</label>
                 <div class="mt-1">
-                    <textarea id="body" rows="3" wire:model="blog.content" class="block w-full px-3 py-2 text-base leading-normal transition duration-150 ease-in-out bg-white border border-gray-300 border-gray-400 rounded-md shadow-sm appearance-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+                    <textarea id="myeditorinstance" rows="3" wire:model="blog.content" class="block w-full px-3 py-2 text-base leading-normal transition duration-150 ease-in-out bg-white border border-gray-300 border-gray-400 rounded-md shadow-sm appearance-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+                    {{-- <x-head.tinymce-config wire:model="blog.content" id="myeditorinstance" placeholder="Type anything you want..." /> --}}
+
                 </div>
             </div>
             <div class="sm:col-span-6">
@@ -63,4 +65,24 @@
             <div wire:click="savePost" class="inline-flex justify-center px-4 py-2 text-sm font-medium leading-5 text-white transition duration-150 ease-in-out bg-indigo-500 border border-transparent rounded-md cursor-pointer hover:bg-indigo-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">Submit Post</div>
         </div>
     </div>
+
+    <script>
+        tinymce.init({
+          selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE
+          plugins: 'code table lists image media file',
+          toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table',
+          forced_root_block: false,
+          setup: function (editor) {
+            editor.on('init change', function () {
+                editor.save();
+            });
+            editor.on('change', function (e) {
+                @this.set('blog.content', editor.getContent());
+            });
+            },
+
+        });
+      </script>
+
+
 </div>
