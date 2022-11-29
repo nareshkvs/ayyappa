@@ -14,7 +14,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::latest()->get();
+        $blogs = Blog::paginate(10);
 
         return view('blogs.index', ['blogs' => $blogs]);
     }
@@ -49,7 +49,7 @@ class BlogController extends Controller
     public function read($id, $slug)
     {
         $blog = Blog::find($id);
-        return view('blogs.view', ['blog'=>$blog]);
+        return view('blogs.view', ['blog' => $blog]);
     }
 
     /**

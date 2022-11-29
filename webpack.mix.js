@@ -1,8 +1,8 @@
 const mix = require('laravel-mix');
-const CKEditorWebpackPlugin = require('@ckeditor/ckeditor5-dev-webpack-plugin');
-const webpack = require('webpack');
+//const CKEditorWebpackPlugin = require('@ckeditor/ckeditor5-dev-webpack-plugin');
+//const webpack = require('webpack');
 /* const CKEditorStyles = require('@ckeditor/ckeditor5-dev-utils').styles; */
-const {styles} = require('@ckeditor/ckeditor5-dev-utils');
+//const {styles} = require('@ckeditor/ckeditor5-dev-utils');
 
 
 /* mix.copyDirectory('vendor/tinymce/tinymce', 'public/js/tinymce'); */
@@ -21,7 +21,7 @@ const {styles} = require('@ckeditor/ckeditor5-dev-utils');
 
 // make sure you copy these two regexes from the CKEdidtor docs:
 // https://ckeditor.com/docs/ckeditor5/latest/installation/advanced/alternative-setups/integrating-from-source.html#webpack-configuration
-const CKERegex = {
+/* const CKERegex = {
     svg: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
     css: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
 };
@@ -46,9 +46,9 @@ Mix.listen('configReady', webpackConfig => {
         rule.exclude = CKERegex.css;
     }
     }
-});
+}); */
 
-mix.webpackConfig({
+/* mix.webpackConfig({
     plugins: [
     new CKEditorWebpackPlugin({
         language: 'en',
@@ -89,7 +89,7 @@ mix.webpackConfig({
         }
     ]
     }
-});
+}); */
 
 mix.setPublicPath('public')
 

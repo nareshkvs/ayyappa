@@ -21,23 +21,25 @@ class TemplesComponent extends Component
 
     public function render()
     {
-        if($this->temple_id != '') {
+        if ($this->temple_id != '') {
             $this->templeInfo = $this->getTempleInfo();
             return view('livewire.temples.view')->with('sequence', 1);
         } else {
-            $this->temples = Temple::all();
-            return view('livewire.temples.list')->with('sequence', 1);
+            //$this->temples = Temple::all();
+            $temples = Temple::paginate(1);
+            return view('livewire.temples.list', ['temples' => $temples]);
         }
     }
 
-    public function viewTempleInfo(int $templeId) {
-        return redirect()->to('/temple/'.$templeId);
+    public function viewTempleInfo(int $templeId)
+    {
+        return redirect()->to('/temple/' . $templeId);
     }
 
     public function getTempleInfo()
     {
-        $templeInfo = Temple::where('id',$this->temple_id)->get();
-        return isset($templeInfo[0]) ? $templeInfo[0]: '';
+        $templeInfo = Temple::where('id', $this->temple_id)->get();
+        return isset($templeInfo[0]) ? $templeInfo[0] : '';
         /* $this->temple_id = $temple->id;
         $this->name = $temple->name;
         $this->description = $temple->description;
